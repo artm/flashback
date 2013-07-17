@@ -9,6 +9,8 @@ $(function() {
   var cardView = $(".card");
   var frontView = cardView.find(".front");
   var backView = cardView.find(".back");
+  var againButton = $("#againButton");
+  var endModal = $("#endModal");
 
   var card = function() { return cards[cardIndex]; }
 
@@ -24,6 +26,9 @@ $(function() {
     cardIndex++;
     if (cardIndex < cards.length) {
       refreshCardView();
+    } else {
+      cardView.hide();
+      endModal.fadeIn();
     }
   };
 
@@ -43,19 +48,22 @@ $(function() {
     }
     cardView.toggleClass("flipped");
   };
-  var cardRight = function() {
-  };
-  var cardLeft = function() {
-  };
+
+  var runAgain = function() {
+    cardIndex = 0;
+    endModal.fadeOut( function() {
+      cardView.show();
+      refreshCardView();
+    });
+  }
 
   $("body").on( "keydown", function(e) {
     switch(e.keyCode) {
       case 38: cardUp(); break;
       case 40: cardDown(); break;
-      case 39: cardRight(); break;
-      case 37: cardLeft(); break;
     }
   });
+  againButton.on("click", runAgain);
 
   refreshCardView();
 });
