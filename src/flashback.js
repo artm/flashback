@@ -1,10 +1,5 @@
 $(function() {
-  var cards = [
-    { front: "foo", back: "FOO" },
-    { front: "bar", back: "BAR" },
-    { front: "baz", back: "BAZ" },
-    { front: "qux", back: "QUX" },
-  ];
+  var cards = [ ];
   var cardIndex = 0;
   var cardView = $(".card");
   var frontView = cardView.find(".front");
@@ -66,5 +61,11 @@ $(function() {
   });
   againButton.on("click", runAgain);
 
-  refreshCardView();
+  var receiveCards = function(json) {
+    cards = json;
+    runAgain();
+  }
+
+  $.get('/cards',receiveCards);
+
 });
