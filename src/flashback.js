@@ -58,6 +58,7 @@ $(function() {
   }
 
   $("body").on( "keydown", function(e) {
+    if (cardView.css("opacity") < 1) return;
     switch(e.keyCode) {
       case 38: cardUp(); break;
       case 40: cardDown(); break;
