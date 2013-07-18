@@ -3,34 +3,24 @@
 require "rubygems"
 require "sinatra"
 require "sinatra/reloader" if development?
-require "sequel"
 require "json"
+$LOAD_PATH << File.join(settings.root,"lib")
+require "config/db"
+require "models/card"
 
-DB = Sequel.connect("sqlite://db.sqlite")
-class Card < Sequel::Model
+get("/") { redirect to "/app/" }
+get("/app") { redirect to "/app/" }
+
+get "/app/" do
+  send_file File.join "src", "flashback.html"
 end
 
-get "/" do
-  redirect "/flashback.html"
-end
-
-get "/:file.html" do
-  headers "Content-Type" => "text/html"
-  File.read "src/#{params[:file]}.html"
-end
-
-get "/:file.js" do
-  headers "Content-Type" => "application/javascript"
-  File.read "src/#{params[:file]}.js"
-end
-
-get "/:file.css" do
-  headers "Content-Type" => "text/css"
-  File.read "src/#{params[:file]}.css"
+get "/app/:file" do
+  send_file File.join "src", params[:file]
 end
 
 get "/cards" do
-  headers 'Content-Type' => 'application/json'
+  headers "Content-Type" => "application/json"
   JSON.pretty_generate Card.all.map{|c| c.to_hash}
 end
 
