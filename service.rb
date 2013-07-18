@@ -17,8 +17,8 @@ end
 
 get("/") { redirect to "/app/" }
 get("/app") { redirect to "/app/" }
-get("/app/") { send_file File.join "src", "flashback.html" }
-get("/app/:file") { send_file File.join "src", params[:file] }
+get("/app/") { send_file File.join settings.public_folder, "flashback.html" }
+get("/app/:file") { send_file File.join settings.public_folder, params[:file] }
 
 BEGIN {
   require "rubygems"
@@ -26,4 +26,6 @@ BEGIN {
   $LOAD_PATH << File.join(settings.root,"lib")
   require "config/db"
   require "models/card"
+
+  set :public_folder, "public"
 }
