@@ -2,8 +2,6 @@
 
 require "rubygems"
 require "sinatra"
-require "sinatra/reloader" if development?
-require "json"
 $LOAD_PATH << File.join(settings.root,"lib")
 require "config/db"
 require "models/card"
@@ -21,7 +19,7 @@ end
 
 get "/cards" do
   headers "Content-Type" => "application/json"
-  JSON.pretty_generate Card.all.map{|c| c.to_hash}
+  Card.json_list
 end
 
 post "/card/:id/:state" do
@@ -29,5 +27,7 @@ post "/card/:id/:state" do
   if %w(retained forgotten).include? state
     card = Card.first(params[:id])
     card.send(state)
+    card.save
   end
+  ""
 end
