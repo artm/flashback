@@ -7,9 +7,7 @@ require "sequel"
 require "json"
 
 DB = Sequel.connect("sqlite://db.sqlite")
-#Cards = DB["cards"]
 class Card < Sequel::Model
-
 end
 
 get "/" do
@@ -34,4 +32,12 @@ end
 get "/cards" do
   headers 'Content-Type' => 'application/json'
   JSON.pretty_generate Card.all.map{|c| c.to_hash}
+end
+
+post "/card/:id/:state" do
+  state = params[:state]
+  if %w(retained forgotten).include? state
+    card = Card.first(params[:id])
+    card.send(state)
+  end
 end

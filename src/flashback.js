@@ -27,19 +27,20 @@ $(function() {
     }
   };
 
-  var reschedule = function(when) {
-    var offset = ((when==="soon") ? "-" : "+") + cardView.outerHeight();
+  var reschedule = function(state) {
+    var offset = ((state==="forgotten") ? "-" : "+") + cardView.outerHeight();
     cardView.animate({top: offset, opacity: 0}, nextCard);
+    $.post("/card/" + card().id + "/" + state);
   };
   var cardUp = function() {
     if (cardView.hasClass("flipped")) {
-      reschedule("soon");
+      reschedule("forgotten");
     }
     cardView.toggleClass("flipped");
   };
   var cardDown = function() {
     if (cardView.hasClass("flipped")) {
-      reschedule("later");
+      reschedule("retained");
     }
     cardView.toggleClass("flipped");
   };
