@@ -6,7 +6,10 @@ $(function() {
   var backField = $('.card .back');
 
   var renderCardItem = function( card ) {
-    return $( "<div><b>" + card.front + "</b> " + card.back + "</div>" );
+    return $(
+      "<div class=\"front\">" + card.front + "</div>" +
+      "<div class=\"back\">"  + card.back  + "</div>"
+    );
   };
 
   var addCardToList = function(card,prepend) {
