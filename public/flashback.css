@@ -56,3 +56,7 @@ body {
   background: yellow;
 }
 
+#card-list .updating {
+  font-style: italic;
+}
+
