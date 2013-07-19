@@ -54,19 +54,25 @@ $(function() {
   }
 
   $("body").on( "keydown", function(e) {
-    if (cardView.css("opacity") < 1) return;
-    switch(e.keyCode) {
-      case 38: cardUp(); break;
-      case 40: cardDown(); break;
+    if (endModal.css("display") == "block") {
+      reloadLesson();
+    } else if (cardView.css("opacity") == 1) {
+      switch(e.keyCode) {
+        case 38: cardUp(); break;
+        case 40: cardDown(); break;
+      }
     }
   });
-  againButton.on("click", runAgain);
 
   var receiveCards = function(json) {
     cards = json;
     runAgain();
   }
 
-  $.get('/cards',receiveCards);
+  var reloadLesson = function() {
+    $.get('/cards',receiveCards);
+  };
 
+  againButton.on("click", reloadLesson);
+  reloadLesson();
 });
