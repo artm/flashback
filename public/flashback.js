@@ -6,6 +6,7 @@ $(function() {
   var backView = cardView.find(".back");
   var againButton = $("#againButton");
   var endModal = $("#endModal");
+  var noCardsModal = $("#noCardsModal");
 
   var card = function() { return cards[cardIndex]; }
 
@@ -56,7 +57,7 @@ $(function() {
   $("body").on( "keydown", function(e) {
     if (endModal.css("display") == "block") {
       reloadLesson();
-    } else if (cardView.css("opacity") == 1) {
+    } else if (cardView.css("display") == "block" && cardView.css("opacity") == 1) {
       switch(e.keyCode) {
         case 38: cardUp(); break;
         case 40: cardDown(); break;
@@ -66,11 +67,15 @@ $(function() {
 
   var receiveCards = function(json) {
     cards = json;
-    runAgain();
+    if (cards.length)
+      runAgain();
+    else
+      noCardsModal.fadeIn();
   }
 
   var reloadLesson = function() {
-    $.get('/cards',receiveCards);
+    cardView.hide();
+    $.get('/cards/scheduled',receiveCards);
   };
 
   againButton.on("click", reloadLesson);

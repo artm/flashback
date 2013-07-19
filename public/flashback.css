@@ -1,5 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+button {
+  padding: 4px;
+  margin: 3px;
+}
+
 body {
   background: grey;
+}
+
+.show .card {
+  display: none;
 }
 
 .card, .modal, #card-list {
@@ -17,6 +30,14 @@ body {
 }
 .card {
   position: relative;
+}
+.edit .fixed {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+.edit .card input {
+  margin: 2px;
 }
 
 .front, .back {
@@ -36,20 +57,22 @@ body {
 }
 
 #card-list {
-  width: 300px;
-  margin: 1em auto;
+  width: 400px;
+  margin-top: 150px;
 }
 
 #card-list li {
   list-style: none;
-  margin-bottom: 0.5em;
+}
+
+#card-list li:nth-child(odd) {
+  background: #e7e7e7;
 }
 
 #card-list > li > div {
   display: inline-block;
-  width: 50%;
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-  border-radius: 5px;
+  width: 49%;
+  vertical-align: middle;
 }
 
 #card-list li.current {

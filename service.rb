@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 
+get "/cards/scheduled" do
+  headers "Content-Type" => "application/json"
+  JsonList.make Card.where("show_at is null or show_at <= ?", Date.today).all.shuffle
+end
+
 get "/cards" do
   headers "Content-Type" => "application/json"
-  Card.json_list
+  JsonList.make Card.all
 end
 
 post "/card/:id/:state" do
@@ -39,6 +44,7 @@ BEGIN {
   $LOAD_PATH << File.join(settings.root,"lib")
   require "config/db"
   require "models/card"
+  require "json_list"
 
   set :public_folder, "public"
 }
