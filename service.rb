@@ -34,17 +34,20 @@ post "/card" do
 end
 
 get("/") { redirect to "/app/" }
-get("/app") { redirect to "/app/" }
-get("/app/") { send_file File.join settings.public_folder, "flashback.html" }
+get("/app") { redirect to "/app/flashback" }
+get("/app/") { redirect to "/app/flashback" }
+Dir["views/*.slim"].each do |file|
+  basename = File.basename file, ".slim"
+  get("/app/#{basename}") { slim basename.to_sym }
+end
 get("/app/:file") { send_file File.join settings.public_folder, params[:file] }
 
 BEGIN {
   require "rubygems"
   require "sinatra"
+  require 'slim'
   $LOAD_PATH << File.join(settings.root,"lib")
   require "config/db"
   require "models/card"
   require "json_list"
-
-  set :public_folder, "public"
 }
