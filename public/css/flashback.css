@@ -1,8 +1,4 @@
-.show .card {
-  display: none;
-}
-
-.card, .modal {
+.card {
   background: white;
   padding: 1em;
   border-radius: 1em;
@@ -31,11 +27,6 @@
 }
 .show .flipped .back {
   display: block;
-}
-
-.modal {
-  display: none;
-  text-align: center;
 }
 
 #card-list .current > * {

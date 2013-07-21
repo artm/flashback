@@ -23,8 +23,7 @@ $(function() {
     if (cardIndex < cards.length) {
       refreshCardView();
     } else {
-      cardView.hide();
-      endModal.fadeIn();
+      endModal.modal();
     }
   };
 
@@ -46,18 +45,8 @@ $(function() {
     cardView.toggleClass("flipped");
   };
 
-  var runAgain = function() {
-    cardIndex = 0;
-    endModal.fadeOut( function() {
-      cardView.show();
-      refreshCardView();
-    });
-  }
-
   $("body").on( "keydown", function(e) {
-    if (endModal.css("display") == "block") {
-      reloadLesson();
-    } else if (cardView.css("display") == "block" && cardView.css("opacity") == 1) {
+    if (cardView.css("display") == "block" && cardView.css("opacity") == 1) {
       switch(e.keyCode) {
         case 38: cardUp(); break;
         case 40: cardDown(); break;
@@ -67,17 +56,17 @@ $(function() {
 
   var receiveCards = function(json) {
     cards = json;
-    if (cards.length)
-      runAgain();
-    else
-      noCardsModal.fadeIn();
+    if (cards.length) {
+      cardIndex = 0;
+      refreshCardView();
+    } else
+      noCardsModal.modal();
   }
 
   var reloadLesson = function() {
-    cardView.hide();
     $.get('/cards/scheduled',receiveCards);
   };
 
-  againButton.on("click", reloadLesson);
+  endModal.on("hidden", reloadLesson);
   reloadLesson();
 });
