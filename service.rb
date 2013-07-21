@@ -33,14 +33,14 @@ post "/card" do
   JSON.pretty_generate card.to_hash
 end
 
-get("/") { redirect to "/app/" }
-get("/app") { redirect to "/app/flashback" }
-get("/app/") { redirect to "/app/flashback" }
+get("/") { redirect to "/flashback/" }
+get("/flashback") { redirect to "/flashback/drill" }
+get("/flashback/") { redirect to "/flashback/drill" }
 Dir["views/*.slim"].each do |file|
   basename = File.basename file, ".slim"
-  get("/app/#{basename}") { slim basename.to_sym }
+  get("/flashback/#{basename}") { slim basename.to_sym, locals: { page_script: basename } }
 end
-get("/app/:file") { send_file File.join settings.public_folder, params[:file] }
+get("/flashback/:file") { send_file File.join settings.public_folder, params[:file] }
 
 BEGIN {
   require "rubygems"
