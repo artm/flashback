@@ -1,8 +1,10 @@
 .edit
-  .fixed
-    .card
-      input.front placeholder="front"
-      input.back placeholder="back"
-      button#ok add
-      button#cancel cancel
-  ul#card-list
+  table#card-list.table-hover.table-condensed.table-bordered
+    tr
+      th
+        input.front placeholder="front"
+      th
+        input.back placeholder="back"
+      th
+        button#ok add
+        button#cancel cancel

@@ -2,18 +2,19 @@ $(function() {
   var cards = [];
   var currentCard = null;
   var cardListView = $("#card-list");
-  var frontField = $(".card .front");
-  var backField = $(".card .back");
+  var frontField = $("#card-list input.front");
+  var backField = $("#card-list input.back");
 
   var renderCardItem = function( card ) {
     return $(
-      "<div class=\"front\">" + card.front + "</div>" +
-      "<div class=\"back\">"  + card.back  + "</div>"
+      "<td class=\"front\">" + card.front + "</td>" +
+      "<td class=\"back\">"  + card.back  + "</td>" +
+      "<td></td>"
     );
   };
 
   var addCardToList = function(card,prepend) {
-    var content = $("<li></li>").html(renderCardItem(card)).data("card", card);
+    var content = $("<tr></tr>").html(renderCardItem(card)).data("card", card);
     if (prepend)
       cardListView.prepend(content);
     else
@@ -22,7 +23,7 @@ $(function() {
   };
 
   var renderCardList = function() {
-    cardListView.empty();
+    $("tr:contains(td)",cardListView).remove()
     for(var i=0; i<cards.length; i++) {
       addCardToList(cards[i]);
     }
@@ -45,11 +46,14 @@ $(function() {
   };
 
   var onCardItemClicked = function() {
-    currentCardItem().removeClass("current");
-    var node = $(this)
-    node.addClass("current");
-    setCurrentCard( node.data("card") );
-    $("#ok").text("update");
+    var node = $(this);
+    var nodeCard = node.data("card");
+    if (nodeCard) {
+      currentCardItem().removeClass("current");
+      node.addClass("current");
+      setCurrentCard( nodeCard );
+      $("#ok").text("update");
+    }
   };
 
   var initNewCard = function() {
@@ -91,7 +95,7 @@ $(function() {
     initNewCard();
   };
 
-  $("#card-list").on("click", "li", onCardItemClicked );
+  $("#card-list").on("click", "tr", onCardItemClicked );
   $("#ok").on("click", saveEditedCard );
   $("#cancel").on("click", resetEditedCard );
 

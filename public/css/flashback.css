@@ -1,21 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-button {
-  padding: 4px;
-  margin: 3px;
-}
-
-body {
-  background: grey;
-}
-
 .show .card {
   display: none;
 }
 
-.card, .modal, #card-list {
+.card, .modal {
   background: white;
   padding: 1em;
   border-radius: 1em;
@@ -31,16 +18,11 @@ body {
 .card {
   position: relative;
 }
-.edit .fixed {
-  width: 100%;
-  position: fixed;
-  top: 0;
-}
 .edit .card input {
   margin: 2px;
 }
 
-.front, .back {
+.card .front, .card .back {
   text-align: center;
 }
 
@@ -56,26 +38,7 @@ body {
   text-align: center;
 }
 
-#card-list {
-  width: 400px;
-  margin-top: 150px;
-}
-
-#card-list li {
-  list-style: none;
-}
-
-#card-list li:nth-child(odd) {
-  background: #e7e7e7;
-}
-
-#card-list > li > div {
-  display: inline-block;
-  width: 49%;
-  vertical-align: middle;
-}
-
-#card-list li.current {
+#card-list .current > * {
   background: yellow;
 }
 
