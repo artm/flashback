@@ -2,9 +2,12 @@
   table#card-list.table-hover.table-condensed.table-bordered
     tr
       th
-        input.front placeholder="front"
-      th
-        input.back placeholder="back"
-      th
-        button#ok add
-        button#cancel cancel
+        form.form-inline
+          input.front placeholder="front" type="text"
+      th colspan="2"
+        form.form-inline
+          input.back placeholder="back" type="text"
+          '
+          .btn-group
+            button.btn.btn-primary#ok add
+            button.btn#cancel cancel

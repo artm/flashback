@@ -11,7 +11,7 @@
   margin: 0 auto;
 }
 
-.card .front, .card .back {
+.card .front, .card .back, #card-list input {
   font-size: 20pt;
   font-weight: bold;
 }

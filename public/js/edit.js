@@ -8,8 +8,7 @@ $(function() {
   var renderCardItem = function( card ) {
     return $(
       "<td class=\"front\">" + card.front + "</td>" +
-      "<td class=\"back\">"  + card.back  + "</td>" +
-      "<td></td>"
+      "<td class=\"back\">"  + card.back  + "</td>"
     );
   };
 
