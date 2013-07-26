@@ -7,13 +7,13 @@ $(function() {
 
   var renderCardItem = function( card ) {
     return $(
-      "<td class=\"front span5\">" + card.front + "</td>" +
-      "<td class=\"back span5\">"  + card.back  + "</td>"
-    );
+      "<tr><td class=\"front span5\">" + card.front + "</td>" +
+      "<td class=\"back span5\">"  + card.back  + "</td></tr>"
+    ).data("card",card);
   };
 
   var addCardToList = function(card,prepend) {
-    var content = $("<tr></tr>").html(renderCardItem(card)).data("card", card);
+    var content = renderCardItem(card);
     if (prepend)
       cardListView.prepend(content);
     else
