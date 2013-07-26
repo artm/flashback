@@ -47,11 +47,12 @@ $(function() {
 
   $("body").on( "keydown", function(e) {
     if (cardView.css("display") == "block" && cardView.css("opacity") == 1) {
-      switch(e.keyCode) {
+      switch(e.which) {
         case 38: cardUp(); break;
         case 40: cardDown(); break;
       }
     }
+    return true;
   });
 
   var receiveCards = function(json) {

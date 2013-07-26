@@ -8,14 +8,14 @@
 }
 
 .card .front, .card .back, #card-list input {
-  font-size: 20pt;
+  font-size: 250%;
   font-weight: bold;
+  line-height: 170%;
+  text-align: center;
 }
+
 .card {
   position: relative;
-}
-.edit .card input {
-  margin: 2px;
 }
 
 .card .front, .card .back {
@@ -27,6 +27,25 @@
 }
 .show .flipped .back {
   display: block;
+}
+
+#card-list {
+  margin: 0 auto;
+}
+
+#card-list td {
+  font-size: 170%;
+  text-align: center;
+  line-height: 170%;
+}
+
+#card-list button {
+  width: 6em;
+}
+
+#card-list input {
+  height: auto;
+  width: 8em;
 }
 
 #card-list .current > * {

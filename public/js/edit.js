@@ -1,7 +1,7 @@
 $(function() {
   var cards = [];
   var currentCard = null;
-  var cardListView = $("#card-list");
+  var cardListView = $("#card-list tbody");
   var frontField = $("#card-list input.front");
   var backField = $("#card-list input.back");
 
@@ -22,7 +22,7 @@ $(function() {
   };
 
   var renderCardList = function() {
-    $("tr:contains(td)",cardListView).remove()
+    cardListView.empty();
     for(var i=0; i<cards.length; i++) {
       addCardToList(cards[i]);
     }
@@ -90,8 +90,9 @@ $(function() {
 
     initNewCard();
   };
-  var resetEditedCard = function() {
+  var resetEditedCard = function(e) {
     initNewCard();
+    e.preventDefault();
   };
 
   $("#card-list").on("click", "tr", onCardItemClicked );

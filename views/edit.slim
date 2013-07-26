@@ -1,13 +1,17 @@
 .edit
-  table#card-list.table-hover.table-condensed.table-bordered
-    tr
-      th
-        form.form-inline
-          input.front placeholder="front" type="text"
-      th colspan="2"
-        form.form-inline
-          input.back placeholder="back" type="text"
-          '
-          .btn-group
-            button.btn.btn-primary#ok add
-            button.btn#cancel cancel
+  .row
+    .span12
+      table#card-list.table-hover.table-condensed.table-bordered
+        thead
+          tr
+            th
+              form.form-inline
+                input.front placeholder="front" type="text"
+            th colspan="2"
+              form.form-inline
+                input.back placeholder="back" type="text"
+                '
+                .btn-group.btn-group-vertical
+                  button.btn.btn-primary#ok add
+                  button.btn#cancel cancel
+        tbody
