@@ -2,13 +2,13 @@ $(function() {
   var cards = [];
   var currentCard = null;
   var cardListView = $("#card-list tbody");
-  var frontField = $("#card-list input.front");
-  var backField = $("#card-list input.back");
+  var frontField = $("#card-edit input.front");
+  var backField = $("#card-edit input.back");
 
   var renderCardItem = function( card ) {
     return $(
-      "<td class=\"front\">" + card.front + "</td>" +
-      "<td class=\"back\">"  + card.back  + "</td>"
+      "<td class=\"front span5\">" + card.front + "</td>" +
+      "<td class=\"back span5\">"  + card.back  + "</td>"
     );
   };
 

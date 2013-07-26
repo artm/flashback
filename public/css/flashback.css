@@ -7,11 +7,29 @@
   margin: 0 auto;
 }
 
-.card .front, .card .back, #card-list input {
+.card .front, .card .back, #card-edit input {
   font-size: 250%;
   font-weight: bold;
   line-height: 170%;
   text-align: center;
+}
+
+#card-edit {
+  background: white;
+}
+
+#card-edit.affix-top {
+  position: absolute;
+  top: 50px;
+}
+
+#card-edit.affix {
+  top: 0px;
+}
+
+#card-edit input {
+  height: auto;
+  margin: 1px;
 }
 
 .card {
@@ -30,22 +48,15 @@
 }
 
 #card-list {
-  margin: 0 auto;
+  margin-top: 85px;
+  margin-bottom: 1em;
 }
 
 #card-list td {
   font-size: 170%;
   text-align: center;
   line-height: 170%;
-}
-
-#card-list button {
-  width: 6em;
-}
-
-#card-list input {
-  height: auto;
-  width: 8em;
+  padding: 0;
 }
 
 #card-list .current > * {

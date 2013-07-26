@@ -1,17 +1,11 @@
 .edit
-  .row
-    .span12
-      table#card-list.table-hover.table-condensed.table-bordered
-        thead
-          tr
-            th
-              form.form-inline
-                input.front placeholder="front" type="text"
-            th colspan="2"
-              form.form-inline
-                input.back placeholder="back" type="text"
-                '
-                .btn-group.btn-group-vertical
-                  button.btn.btn-primary#ok add
-                  button.btn#cancel cancel
-        tbody
+  form#card-edit.form-inline data-spy="affix" data-offset-top="50"
+    input.front.span5 placeholder="front" type="text"
+    input.back.span5 placeholder="back" type="text"
+    '
+    .btn-group.btn-group-vertical
+      button.btn.btn-primary#ok.span2 add
+      button.btn#cancel.span2 cancel
+
+  table#card-list.table-hover.table-condensed.table-bordered
+    tbody
