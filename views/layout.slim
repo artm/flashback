@@ -8,12 +8,18 @@ html
   body
     .container
       .navbar
-        a.navbar-brand Flashback
+        a.navbar-brand href="./" Flashback
         ul.nav.navbar-nav
-          li: a href="drill" Drill
-          li: a href="edit" Edit
+          - {"drill" => "Drill", "edit" => "Edit"}.each do |url, title|
+            ruby:
+              def active(url,current)
+                url==current ? {class: "active"} : {}
+              end
+            li *active(url,page)
+              a href=url
+                = title
       == yield
     script src="/js/jquery.js"
     script src="/js/bootstrap.min.js"
-    script src="/js/#{page_script}.js"
+    script src="/js/#{page}.js"
 
