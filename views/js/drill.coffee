@@ -7,6 +7,7 @@ $ ->
   againButton = $("#againButton")
   endModal = $("#endModal")
   noCardsModal = $("#noCardsModal")
+
   card = ->
     cards[cardIndex]
 
@@ -20,7 +21,6 @@ $ ->
       left: 0
       opacity: 1.0
 
-
   nextCard = ->
     cardIndex++
     if cardIndex < cards.length
@@ -29,28 +29,25 @@ $ ->
       endModal.modal()
 
   reschedule = (state) ->
-    offset = ((if (state is "retained") then "-" else "+")) + cardView.outerHeight()
+    sign = if state is "retained" then "-" else "+"
+    offset = "#{sign}#{cardView.outerHeight()}"
     cardView.animate
       top: offset
       opacity: 0
     , nextCard
     $.post "/card/" + card().id + "/" + state
 
-  cardUp = ->
-    reschedule "retained"  if cardView.hasClass("flipped")
-    cardView.toggleClass "flipped"
-
-  cardDown = ->
-    reschedule "forgotten"  if cardView.hasClass("flipped")
+  flipCard = (state) ->
+    reschedule(state) if cardView.hasClass("flipped")
     cardView.toggleClass "flipped"
 
   $("body").on "keydown", (e) ->
-    if cardView.css("opacity") is 1
+    if parseFloat(cardView.css("opacity")) == 1
       switch e.which
         when 38
-          cardUp()
+          flipCard "retained"
         when 40
-          cardDown()
+          flipCard "forgotten"
     true
 
   receiveCards = (json) ->

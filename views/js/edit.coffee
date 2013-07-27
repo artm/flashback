@@ -6,7 +6,11 @@ $ ->
   backField = $("#card-edit input.back")
 
   renderCardItem = (card) ->
-    $("<tr><td class=\"front\">#{card.front}</td>" + "<td class=\"back\">" + card.back + "</td>" + "<td class=\"span2\"><button class=\"remove btn btn-danger btn-small\">&times;</button></td>" + "</tr>").data "card", card
+    $("<tr><td class=\"front\">#{card.front}</td>
+       <td class=\"back\">#{card.back}</td>
+       <td class=\"span2\">
+         <button class=\"remove btn btn-danger btn-small\">&times;</button>
+       </td></tr>").data("card", card)
 
   addCardToList = (card, prepend) ->
     content = renderCardItem(card)
@@ -81,7 +85,6 @@ $ ->
       url: "/card/" + card.id
       type: "DELETE"
 
-
   animateRowRemoval = (row) ->
     row.animate
       opacity: 0
@@ -93,8 +96,6 @@ $ ->
         height: 0
       , ->
         row.remove()
-
-
 
   onRemoveClicked = (e) ->
     node = $(this).closest("tr")
