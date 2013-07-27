@@ -8,17 +8,15 @@ $(function() {
   var renderCardItem = function( card ) {
     return $(
       "<tr><td class=\"front span5\">" + card.front + "</td>" +
-      "<td class=\"back span5\">"  + card.back  + "</td></tr>"
+      "<td class=\"back span5\">"  + card.back  + "</td>" +
+      "<td class=\"span2\"><button class=\"remove btn btn-danger btn-mini\">&times;</button></td>" +
+      "</tr>"
     ).data("card",card);
   };
 
   var addCardToList = function(card,prepend) {
     var content = renderCardItem(card);
-    if (prepend)
-      cardListView.prepend(content);
-    else
-      cardListView.append(content);
-    return content;
+    return prepend ? content.prependTo(cardListView) : content.appendTo(cardListView);
   };
 
   var renderCardList = function() {
@@ -45,7 +43,7 @@ $(function() {
   };
 
   var onCardItemClicked = function() {
-    var node = $(this);
+    var node = $(this).closest('tr');
     var nodeCard = node.data("card");
     if (nodeCard) {
       currentCardItem().removeClass("current");
@@ -95,7 +93,31 @@ $(function() {
     e.preventDefault();
   };
 
-  $("#card-list").on("click", "tr", onCardItemClicked );
+  var removeCard = function(card) {
+    $.ajax({url: "/card/" + card.id, type: "DELETE"});
+  }
+
+  var animateRowRemoval = function(row) {
+    row.animate({opacity: 0},function(){
+      var placeholder = $("<div></div>");
+      placeholder.height( row.height() );
+      row.html( placeholder );
+      placeholder.animate({height:0},function(){row.remove()});
+    });
+  };
+
+  var onRemoveClicked = function(e) {
+    var node = $(this).closest('tr');
+    var nodeCard = node.data("card");
+    if (nodeCard) {
+      removeCard(nodeCard);
+    }
+    animateRowRemoval( node );
+  }
+
+  $("#card-list").on("click", "button", function(e){e.stopPropagation();});
+  $("#card-list").on("click", "button.remove", onRemoveClicked);
+  $("#card-list").on("click", "td", onCardItemClicked );
   $("#ok").on("click", saveEditedCard );
   $("#cancel").on("click", resetEditedCard );
 
