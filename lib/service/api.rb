@@ -29,6 +29,10 @@ post "/card/:id" do
   JSON.pretty_generate card.to_hash
 end
 
+delete "/card/:id" do
+  Card.find(id: params[:id]).delete
+end
+
 post "/card" do
   card = Card.create front: params[:front], back: params[:back]
   JSON.pretty_generate card.to_hash
