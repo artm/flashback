@@ -20,7 +20,7 @@
 
 #card-edit.affix-top {
   position: absolute;
-  top: 50px;
+  top: 64px;
 }
 
 #card-edit.affix {
@@ -30,6 +30,10 @@
 #card-edit input {
   height: auto;
   margin: 1px;
+}
+
+#card-edit input, #card-list .front, #card-list .back {
+  width: 400px;
 }
 
 .card {
@@ -48,19 +52,18 @@
 }
 
 #card-list {
-  margin-top: 85px;
+  margin-top: 104px;
   margin-bottom: 1em;
 }
 
 #card-list td {
-  font-size: 170%;
-  text-align: center;
-  line-height: 170%;
-  padding: 0;
+  vertical-align: middle;
 }
 
-#card-list .current > * {
-  background: yellow;
+#card-list .front, #card-list .back {
+  text-align: center;
+  font-size: 170%;
+  line-height: 170%;
 }
 
 #card-list button {
@@ -69,9 +72,10 @@
 
 #card-list tr:hover button {
   display: inherit;
+  opacity: 0.5;
 }
 
-#card-list .updating {
-  font-style: italic;
+#card-list td:hover button {
+  opacity: 1;
 }
 

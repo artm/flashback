@@ -1,11 +1,10 @@
 .edit
   form#card-edit.form-inline data-spy="affix" data-offset-top="50"
-    input.front.span5 placeholder="front" type="text"
-    input.back.span5 placeholder="back" type="text"
-    '
-    .btn-group.btn-group-vertical
-      button.btn.btn-primary#ok.span2 add
-      button.btn#cancel.span2 cancel
+    input.front.form-control placeholder="front" type="text"
+    input.back.form-control placeholder="back" type="text"
+    .btn-group-vertical
+      button.btn.btn-primary#ok add
+      button.btn#cancel cancel
 
-  table#card-list.table-hover
+  table#card-list.table.table-hover.table-condensed
     tbody

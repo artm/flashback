@@ -7,9 +7,9 @@ $(function() {
 
   var renderCardItem = function( card ) {
     return $(
-      "<tr><td class=\"front span5\">" + card.front + "</td>" +
-      "<td class=\"back span5\">"  + card.back  + "</td>" +
-      "<td class=\"span2\"><button class=\"remove btn btn-danger btn-mini\">&times;</button></td>" +
+      "<tr><td class=\"front\">" + card.front + "</td>" +
+      "<td class=\"back\">"  + card.back  + "</td>" +
+      "<td class=\"span2\"><button class=\"remove btn btn-danger btn-small\">&times;</button></td>" +
       "</tr>"
     ).data("card",card);
   };
@@ -39,22 +39,22 @@ $(function() {
   };
 
   var currentCardItem = function() {
-    return $(".current", cardListView);
+    return $(".success", cardListView);
   };
 
   var onCardItemClicked = function() {
     var node = $(this).closest('tr');
     var nodeCard = node.data("card");
     if (nodeCard) {
-      currentCardItem().removeClass("current");
-      node.addClass("current");
+      currentCardItem().removeClass("success");
+      node.addClass("success");
       setCurrentCard( nodeCard );
       $("#ok").text("update");
     }
   };
 
   var initNewCard = function() {
-    currentCardItem().removeClass("current");
+    currentCardItem().removeClass("success");
     $("#ok").text("add");
     setCurrentCard( { front: "", back: "" } );
   };
@@ -62,23 +62,25 @@ $(function() {
   var cardUpdater = function( card, view ) {
     return function( data ) {
       card.id = data.id;
-      view.removeClass("updating");
+      view.removeClass("warning");
     };
   }
 
-  var saveEditedCard = function() {
+  var saveEditedCard = function(e) {
+    e.preventDefault();
+
     currentCard.front = frontField.val();
     currentCard.back = backField.val();
 
     var el = currentCardItem();
     if (el.length) {
-      el.html( renderCardItem( currentCard ) );
+      el.replaceWith( el = renderCardItem( currentCard ) );
     } else {
       el = addCardToList( currentCard, true );
     }
 
     var updater = cardUpdater( currentCard, el );
-    el.addClass("updating");
+    el.addClass("warning");
 
     if (currentCard.id) {
       $.post( "/card/" + currentCard.id, currentCard, updater );
@@ -118,6 +120,7 @@ $(function() {
   $("#card-list").on("click", "button", function(e){e.stopPropagation();});
   $("#card-list").on("click", "button.remove", onRemoveClicked);
   $("#card-list").on("click", "td", onCardItemClicked );
+
   $("#ok").on("click", saveEditedCard );
   $("#cancel").on("click", resetEditedCard );
 
