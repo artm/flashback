@@ -1,20 +1,25 @@
 .show
-  .card
-    .front Front
-    .back Back
+  .card.hide
+    .cell
+      .front
+      .back
 
-#endModal.modal.hide.fade
-  .modal-header
-    button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-      | &times;
-    h3 End of pass
-  .modal-body
-    p This pass is over. Stats...?
+#endModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          | &times;
+        h3 End of pass
+      .modal-body
+        p This pass is over. Stats...?
 
-#noCardsModal.modal.hide.fade
-  .modal-header
-    button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-      | &times;
-    h3 Done drillin
-  .modal-body
-    p You're done with this deck: no cards are scheduled for today.
+#noCardsModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          | &times;
+        h3 Done drillin
+      .modal-body
+        p You're done with this deck: no cards are scheduled for today.

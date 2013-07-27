@@ -13,6 +13,7 @@ $(function() {
   var refreshCardView = function() {
     frontView.text( card().front );
     backView.text( card().back );
+    cardView.removeClass("hide");
     cardView.css("top",0);
     cardView.css("left", - cardView.outerWidth());
     cardView.animate({left: 0, opacity: 1.0});
@@ -46,7 +47,7 @@ $(function() {
   };
 
   $("body").on( "keydown", function(e) {
-    if (cardView.css("display") == "block" && cardView.css("opacity") == 1) {
+    if (cardView.css("opacity") == 1) {
       switch(e.which) {
         case 38: cardUp(); break;
         case 40: cardDown(); break;

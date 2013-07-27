@@ -3,8 +3,16 @@
   padding: 1em;
   border-radius: 1em;
   box-shadow: 1px 6px 12px rgba(0,0,0,0.5);
-  max-width: 300px;
+  width: 450px;
+  min-height: 200px;
   margin: 0 auto;
+
+  display: table;
+}
+
+.card .cell {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .card .front, .card .back, #card-edit input {
