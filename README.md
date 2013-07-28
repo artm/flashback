@@ -1,6 +1,8 @@
-# Middleman Template: middleman-bootstrap-sass-slim
+# Flashback II
 
-```
-git clone https://github.com/shimoju/middleman-bootstrap-sass-slim.git ~/.middleman/bootstrap-sass-slim
-middleman init my_new_project --template=bootstrap-sass-slim
-```
+A flashcards scheduler, work in progress.
+
+The goal of the project is to learn some web tricks using a known problem as a
+study. The app is a remake of my ancient python/gtk flashcard scheduler as a
+webapp.
+
