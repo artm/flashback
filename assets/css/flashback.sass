@@ -1,0 +1,71 @@
+//= require bootstrap.min.css
+
+.card
+  background: white
+  padding: 1em
+  border-radius: 1em
+  box-shadow: 1px 6px 12px rgba(0, 0, 0, 0.5)
+  width: 450px
+  min-height: 200px
+  margin: 0 auto
+  display: table
+  .cell
+    display: table-cell
+    vertical-align: middle
+  .front, .back
+    font-size: 250%
+    font-weight: bold
+    line-height: 170%
+    text-align: center
+
+#card-edit
+  input
+    font-size: 250%
+    font-weight: bold
+    line-height: 170%
+    text-align: center
+  background: white
+  &.affix-top
+    position: absolute
+    top: 64px
+  &.affix
+    top: 0px
+  input
+    height: auto
+    margin: 1px
+    width: 400px
+
+#card-list
+  .front, .back
+    width: 400px
+
+.card
+  position: relative
+  .front, .back
+    text-align: center
+
+.show
+  .back
+    display: none
+  .flipped
+    .front
+      display: none
+    .back
+      display: block
+
+#card-list
+  margin-top: 104px
+  margin-bottom: 1em
+  td
+    vertical-align: middle
+  .front, .back
+    text-align: center
+    font-size: 170%
+    line-height: 170%
+  button
+    display: none
+  tr:hover button
+    display: inherit
+    opacity: 0.5
+  td:hover button
+    opacity: 1
