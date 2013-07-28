@@ -2,9 +2,9 @@ require "rack"
 require "rack/contrib/try_static"
 
 use Rack::TryStatic,
-    root: "public",  # static files root dir
-    urls: %w[/],     # match all requests
-    try: [".html", "index.html", "/index.html"] # try these postfixes sequentially
+  root: "tmp",
+  urls: %w[/],
+  try: %w[.html index.html /index.html]
 
 # otherwise 404 NotFound
 run proc { [404, {"Content-Type" => "text/html"}, ["whoops! Not Found"]]}
