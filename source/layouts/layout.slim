@@ -15,37 +15,24 @@ html
     = stylesheet_link_tag "main", media: "all"
 
   body class=page_classes
-    .navbar.navbar-static-top.navbar-inverse
-      .navbar-inner
-        .container
+    .container
+      .navbar
+        .navbar-inner
           a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand href="/" Middleman
+          a.brand href="/" FlashBack
           .container.nav-collapse
             ul.nav
-              li= link_to "Link 1", "path1"
-              li= link_to "Link 2", "path2"
-              li= link_to "Link 3", "path3"
+              li= link_to "Drill", "drill"
+              li= link_to "Edit", "edit"
 
     .container
-      .row
-        .span9
-          = yield
-
-        .span3
-          .well.sidebar-nav
-            ul.nav.nav-list
-              li.nav-header Sidebar
-              li= link_to "Link 1", "path1"
-              li= link_to "Link 2", "path2"
-              li= link_to "Link 3", "path3"
+      = yield
 
       footer
         p © 2013
 
-    /! JavaScripts
-    / Placed at the end of the document so the pages load faster
     script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     = javascript_include_tag "main"

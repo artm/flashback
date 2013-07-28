@@ -8,9 +8,7 @@ webapp.
 
 # Next steps
 
-- run middleman in config.ru
-- make sure it runs in heroku
-- make heroku generate static site on deploy, see http://blog.hull.io/post/45912703356/the-perfect-almost-static-site-setup
 - port the database
 - port the API
 
+- upgrade bootstrap?
