@@ -1,6 +1,9 @@
 require "rack"
-require "rack/contrib/try_static"
 
+require './lib/flashback_api'
+use FlashbackApi
+
+require "rack/contrib/try_static"
 use Rack::TryStatic,
   root: "build",
   urls: %w[/],
