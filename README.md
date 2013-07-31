@@ -8,7 +8,4 @@ webapp.
 
 # Next steps
 
-- port the database
-- port the API
-
 - upgrade bootstrap?
