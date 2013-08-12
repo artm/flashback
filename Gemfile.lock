@@ -76,6 +76,7 @@ GEM
       sprockets-helpers (~> 1.0.0)
       sprockets-sass (~> 1.0.0)
     multi_json (1.7.7)
+    pg (0.16.0)
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
@@ -125,6 +126,7 @@ DEPENDENCIES
   handlebars_assets
   middleman (~> 3.1.4)
   middleman-livereload (~> 3.1.0)
+  pg
   rack-contrib
   sequel
   sinatra
