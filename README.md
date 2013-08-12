@@ -8,4 +8,7 @@ webapp.
 
 # Next steps
 
-- upgrade bootstrap?
+- add spine
+- mock the app up with spine
+- make the database configurable and make a separate configuration for
+  production (postgres @ heroku)
