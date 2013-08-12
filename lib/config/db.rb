@@ -1,4 +1,7 @@
 require "sequel"
-root = File.dirname(File.dirname(File.dirname(__FILE__)))
-DB = Sequel.connect("sqlite://#{root}/db/flashback-dev.db")
+require "yaml"
+
+env = ENV["RACK_ENV"] || "development"
+config = YAML.load_file("config/database.yml")[env]
+DB = Sequel.connect( config )
 

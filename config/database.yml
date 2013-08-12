@@ -1,0 +1,7 @@
+development:
+  adapter: sqlite
+  database: ./db/flashback-dev.db
+production:
+  adapter: postgres
+  host: localhost
+  database: flashback
