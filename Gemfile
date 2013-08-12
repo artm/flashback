@@ -13,4 +13,7 @@ gem "sqlite3"
 gem "rack-contrib"
 
 gem "slim"
-gem "bootstrap-sass"
+gem "bootstrap-sass", github: 'thomas-mcdonald/bootstrap-sass', :branch => '3'
+gem "handlebars_assets"
+
+
